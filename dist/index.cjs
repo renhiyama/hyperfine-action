@@ -7924,7 +7924,9 @@ async function waitForChildProcess(cmd) {
   }
   child.stdout.on("data", (data) => output.push(data));
   return new Promise((resolve, reject) => {
-    child.addListener("error", reject);
+    child.addListener("error", (err) => {
+      console.log(err);
+    });
     child.addListener("exit", (code) => {
       if (code === 0) {
         return resolve(output.join(""));
