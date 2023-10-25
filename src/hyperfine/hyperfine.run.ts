@@ -27,6 +27,7 @@ async function findHyperfine(): Promise<string> {
 }
 
 export async function waitForChildProcess(cmd: string): Promise<string> {
+  console.log("CMD: " + cmd);
   const child = exec(cmd);
 
   const output: string[] = [];

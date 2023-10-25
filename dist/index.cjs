@@ -7916,6 +7916,7 @@ async function findHyperfine() {
   throw new Error("Failed to open hyperfine @ " + HyperFineCommand);
 }
 async function waitForChildProcess(cmd) {
+  console.log("CMD: " + cmd);
   const child = (0, import_child_process2.exec)(cmd);
   const output = [];
   if (child.stdout == null) {
