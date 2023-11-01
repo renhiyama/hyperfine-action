@@ -8022,7 +8022,11 @@ async function main() {
   core3.debug("Checkout benchmark branch: " + benchmarkBranch);
   git.init();
   git.fetch();
-  git.stashAndDrop();
+  try {
+    git.stashAndDrop();
+  } catch (e) {
+    core3.debug(`No changes occured. Proceeding...`);
+  }
   try {
     git.checkout(benchmarkBranch);
   } catch (e) {

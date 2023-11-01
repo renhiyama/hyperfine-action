@@ -110,7 +110,12 @@ async function main(): Promise<void> {
   core.debug('Checkout benchmark branch: ' + benchmarkBranch);
   git.init();
   git.fetch();
-  git.stashAndDrop();
+  try{
+    git.stashAndDrop();
+  }
+  catch(e){
+    core.debug(`No changes occured. Proceeding...`);
+  }
   try {
     git.checkout(benchmarkBranch);
   } catch (e) {
