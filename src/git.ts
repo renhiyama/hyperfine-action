@@ -58,6 +58,15 @@ export class Git {
     this.git('checkout', `${RemoteName}/${branchName}`);
   }
 
+  stashAndDrop(): void {
+    try {
+      this.git('stash');
+    } catch (e) {
+      // ignore if nothing to stash
+    }
+    this.git('stash', 'drop');
+  }
+
   add(...files: string[]): void {
     this.git('add', ...files);
   }

@@ -7885,6 +7885,13 @@ var Git = class {
   checkout(branchName) {
     this.git("checkout", `${RemoteName}/${branchName}`);
   }
+  stashAndDrop() {
+    try {
+      this.git("stash");
+    } catch (e) {
+    }
+    this.git("stash", "drop");
+  }
   add(...files) {
     this.git("add", ...files);
   }
@@ -8015,6 +8022,7 @@ async function main() {
   core3.debug("Checkout benchmark branch: " + benchmarkBranch);
   git.init();
   git.fetch();
+  git.stashAndDrop();
   try {
     git.checkout(benchmarkBranch);
   } catch (e) {
